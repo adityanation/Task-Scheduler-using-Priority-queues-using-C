@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Task {
+    int id;
+    char *description;
+    int task_type;
+    int deadline;
+    int is_completed;
+} Task;
+
+void insert(Task *queue[], Task *task, int priority) {
+    if (queue[priority] == NULL) {
+        queue[priority] = task;
+    } else {
+        int i = priority + 1;
+        while (queue[i] != NULL) {
+            i++;
+        }
+        queue[i] = task;
+    }
+}
+
+void delete_queue(Task *queue[]) {
+    for (int i = 0; i < 100; i++) {
+        if (queue[i] != NULL) {
+            free(queue[i]->description);
+            free(queue[i]);
+        }
+    }
+}
+
+void print_task(Task *task) {
+    printf("%-5d| %-20s| %-10d\n", task->id, task->description, task->deadline);
+}
+
+int main() {
+    int priority[4] = {3, 4, 1, 2};
+    Task *queue[100] = {NULL};
+    int option;
+    int task_id;
+    int task_found;
+
+    do {
+        printf("1. Add a task\n");
+        printf("2. Delete a task\n");
+        printf("3. Edit a task\n");
+        printf("4. Display all tasks\n");
+        printf("5. Exit\n");
+        printf("Enter the number of your option: ");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1: {
+                Task *task = (Task *)malloc(sizeof(Task));
+                printf("Enter task description: ");
+                task->description = (char *)malloc(100 * sizeof(char));
+                fgets(task->description, 100, stdin);
+                task->description[strlen(task->description) - 1] = '\0'; // Remove newline character
+                printf("Enter task type (1 for Exam, 2 for Assignment, 3 for Chore, 4 for Miscellaneous): ");
+                scanf("%d", &task->task_type);
+                printf("Enter deadline (in days): ");
+                scanf("%d", &task->deadline);
+                task->id = rand();
+                task->is_completed = 0;
+                int priority_number = priority[task->task_type - 1];
+                insert(queue, task, priority_number);
+                break;
+            }
+            case 2: {
+                printf("Enter the ID of the task to delete: ");
+                scanf("%d", &task_id);
+                int i = 0;
+                task_found = 0;
+                while (queue[i] != NULL) {
+                    if (queue[i]->id == task_id) {
+                        task_found = 1;
+                        free(queue[i]->description);
+                        free(queue[i]);
+                        while (queue[i + 1] != NULL) {
+                            queue[i] = queue[i + 1];
+                            i++;
+                        }
+                        queue[i] = NULL;
+                        break;
+                    }
+                    i++;
+                }
+                if (!task_found) {
+                    printf("No task found with that ID.\n");
+                }
+                break;
+            }
+            case 3: {
+                printf("Enter the ID of the task to edit: ");
+                scanf("%d", &task_id);
+                int i = 0;
+                task_found = 0;
+                while (queue[i] != NULL) {
+                    if (queue[i]->id == task_id) {
+                        task_found = 1;
+                        printf("Enter new task description: ");
+                        queue[i]->description = (char *)malloc(100 * sizeof(char));
+                        fgets(queue[i]->description, 100, stdin);
+                        queue[i]->description[strlen(queue[i]->description) - 1] = '\0'; // Remove newline character
+                        printf("Enter new task type (1 for Exam, 2 for Assignment, 3 for Chore, 4 for Miscellaneous): ");
+                        scanf("%d", &queue[i]->task_type);
+                        printf("Enter new deadline (in days): ");
+                        scanf("%d", &queue[i]->deadline);
+                        break;
+                    }
+                    i++;
+                }
+                if (!task_found) {
+                    printf("No task found with that ID.\n");
+                }
+                break;
+            }
+            case 4: {
+                for (int i = 0; i < 100; i++) {
+                    if (queue[i] != NULL) {
+                        print_task(queue[i]);
+                    }
+                }
+                break;
+            }
+        }
+    } while (option != 5);
+
+    return 0;
+}
