@@ -64,7 +64,7 @@ int main() {
                 scanf("%d", &task->deadline);
                 task->id = rand();
                 task->is_completed = 0;
-                int priority_number = priority[task->task_type - 1];
+                int priority_number = priority[task->task_type - 1]
                 insert(queue, task, priority_number);
                 break;
             }
