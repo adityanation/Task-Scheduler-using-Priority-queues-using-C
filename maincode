@@ -9,7 +9,7 @@ typedef struct Task {
     int deadline;
     int is_completed;
 } Task;
-//
+
 void insert(Task *queue[], Task *task, int priority) {
     if (queue[priority] == NULL) {
         queue[priority] = task;
