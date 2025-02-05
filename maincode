@@ -20,7 +20,6 @@ void insert(Task *queue[], Task *task, int priority) {
         }
         queue[i] = task;
     }
-}
 
 void delete_queue(Task *queue[]) {
     for (int i = 0; i < 100; i++) {
