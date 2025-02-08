@@ -8,8 +8,6 @@ Implements a priority queue using a heap or linked list.
 Allows adding tasks with different priority levels.
 Executes tasks in order of highest priority.
 Supports task deletion and modification.
-Efficient time complexity for insertion and extraction.
-Technologies Used
 C Programming Language
 Priority Queue (Heap or Linked List)
 Dynamic Memory Allocation
