@@ -91,7 +91,7 @@ int main() {
                 }
                 break;
             }
-            case 3: {
+        
                 printf("Enter the ID of the task to edit: ");
                 scanf("%d", &task_id);
                 int i = 0;
