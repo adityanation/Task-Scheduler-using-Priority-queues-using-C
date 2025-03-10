@@ -114,16 +114,4 @@ void print_task(Task *task) {
                 }
                 break;
             }
-            case 4: {
-                for (int i = 0; i < 100; i++) {
-                    if (queue[i] != NULL) {
-                        print_task(queue[i]);
-                    }
-                }
-                break;
-            }
-        }
-    } while (option != 5);
-
-    return 0;
-}
+            case 4
