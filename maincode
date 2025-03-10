@@ -34,8 +34,6 @@ void print_task(Task *task) {
     printf("%-5d| %-20s| %-10d\n", task->id, task->description, task->deadline);
 }
 
-int main() {
-    int priority[4] = {3, 4, 1, 2};
     Task *queue[100] = {NULL}
     int option;
     int task_id;
