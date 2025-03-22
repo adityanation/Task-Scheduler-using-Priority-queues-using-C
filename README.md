@@ -14,18 +14,4 @@ Dynamic Memory Allocation
 How It Works
 Task Structure:
 Each task contains:
-
-Task ID
-Description
-Priority (higher value means higher priority)
-Execution time
-Priority Queue Implementation:
-
-Tasks are stored in a heap (min-heap or max-heap).
-Higher priority tasks are dequeued first.
-Supports insertion, deletion, and peek operations.
-Scheduler Execution:
-
-Users can add tasks with specific priority levels.
-The scheduler retrieves the highest-priority task and executes it.
-Completed tasks are removed from the queue.
+ue.
