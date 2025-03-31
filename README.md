@@ -76,4 +76,5 @@ This project is open-source and available under the **MIT License**.
 {Aditya Sinha}
 
 ## Contact 
+{adityasinha06841@gmail.com}
 
